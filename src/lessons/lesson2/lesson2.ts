@@ -535,6 +535,81 @@ console.log('lesson 2');
 //     .reduce((result, current) => [...result, ...current], []).sort((a, b) => a - b)
 // console.log(arr3)
 
+//factorial task
+//n! = n * (n - 1) * (n - 2) * ...*1
+
+//@ts-ignore
+// function factorial(n) {
+//     return (n != 1) ? n * factorial(n - 1) : 1
+// }
+//
+// //2 Fibonacci
+//
+// function fibonacci(n: any) {
+//     let a = 1;
+//     let b = 1;
+//     for (let i = 3; i <= n; i++) {
+//         [a, b] = [b, a + b]
+//     }
+//     return b;
+// }
+//
+// alert(fibonacci(3)); // 2
+// alert(fibonacci(7)); // 13
+// alert(fibonacci(77)); // 5527939700884757
+//
+// //3 Fibonacci with recursive
+// //@ts-ignore
+// const fib2 = (n) => {
+//     if (n == 0) {
+//         return [0, 1];
+//     } else {
+//         //@ts-ignore
+//         const [a, b] = fib2(n - 1);
+//         return [b, a + b];
+//     }
+// }
+// //@ts-ignore
+// const fib = (n) => fib2(n)[0];
+// alert(fib(3)); // 2
+// alert(fib(7)); // 13
+// alert(fib(77)); // 5527939700884757
+//
+//
+// //4 list
+//
+// let list = {
+//     value: 1,
+//     next: {
+//         value: 2,
+//         next: {
+//             value: 3,
+//             next: {
+//                 value: 4,
+//                 next: null
+//             }
+//         }
+//     }
+// };
+//
+// function printList(list: any) {
+//     let tmp = list;
+//
+//     while (tmp) {
+//         alert(tmp.value);
+//         tmp = tmp.next;
+//     }
+// }
+// //with recursive
+// function printListRec(list: any) {
+//     alert(list.value);
+//
+//     if (list.next) {
+//         printList(list.next);
+//     }
+// }
+// printListRec(list);
+
 
 // just a plug
 export default () => {
