@@ -378,22 +378,24 @@ console.log('lesson 2');
 //
 //Решение
 //
-// function simpleSum(x: number) {
-//
-//     let _el: number[] = [x];
-//
-//     function helper2(...el: number[]) {
-//         _el = [..._el, ...el];
-//         return _el.reduce((acc, num) => acc + num);
-//     }
-//
-//     return helper2;
-// }
-//
-// //@ts-ignore
-// console.log(simpleSum(3)(2))
-// console.log(simpleSum(3)(6))
-// console.log(simpleSum(1)(0))
+function simpleSum(x: number) {
+    if (x <= 0) return (num: number) => num ;
+
+    let _el: number[] = [x];
+
+    function helper2(...el: number[]) {
+        _el = [..._el, ...el];
+        return _el.reduce((acc, num) => acc + num);
+    }
+
+    return helper2;
+}
+
+//@ts-ignore
+console.log(simpleSum(3)(2))
+console.log(simpleSum(3)(6))
+console.log(simpleSum(1)(0))
+console.log(simpleSum(0)(134))
 
 // Task 02
 // Реализовать функцию makeCounter которая работает следующим образом:
@@ -515,7 +517,7 @@ console.log('lesson 2');
 //
 //Решение
 //
-function MyFlat (){
+function MyFlat() {
 
 }
 
