@@ -1,5 +1,3 @@
-import any = jasmine.any;
-
 console.log('lesson 2');
 
 // Lexical environment
@@ -375,9 +373,27 @@ console.log('lesson 2');
 // console.log(flatDeep(arr, Infinity)); // [1, 2, 3, 4, 5, 6]
 
 
-
 // Task 01
 // Реализовать функцию sum которая суммирует 2 числа следующим образом sum(3)(6) === 9
+//
+//Решение
+//
+// function simpleSum(x: number) {
+//
+//     let _el: number[] = [x];
+//
+//     function helper2(...el: number[]) {
+//         _el = [..._el, ...el];
+//         return _el.reduce((acc, num) => acc + num);
+//     }
+//
+//     return helper2;
+// }
+//
+// //@ts-ignore
+// console.log(simpleSum(3)(2))
+// console.log(simpleSum(3)(6))
+// console.log(simpleSum(1)(0))
 
 // Task 02
 // Реализовать функцию makeCounter которая работает следующим образом:
@@ -387,7 +403,28 @@ console.log('lesson 2');
 // const counter2 = makeCounter();
 // counter2(); // 1
 // counter(); // 3
+//
+//Решение
+//
+// function makeCounter() {
+//     let x = 0;
+//
+//     function inner() {
+//         x += 1
+//         return x;
+//     }
+//
+//     return inner;
+// }
+//
+// const counter = makeCounter();
+// console.log(counter()); //1
+// console.log(counter()); //2
+// const counter2 = makeCounter();
+// console.log(counter2()); //1
+// console.log(counter()); //3
 
+//
 // Task 03
 // Переписать функцию из Task 02 так, что бы она принимала число в качестве аргумента и это число было стартовым значением счетчика
 // и возвращала следующий объект методов:
@@ -395,6 +432,36 @@ console.log('lesson 2');
 // decrease: -1
 // reset: установить счетчик в 0;
 // set: установить счетчик в заданное значение;
+//
+//Решение
+//
+// function makeCounterPro(currentCount: number) {
+//     let counter = {
+//         increase: function () {
+//            return currentCount + 1;
+//         },
+//         decrease: function () {
+//             return currentCount - 1;
+//         },
+//         reset: function () {
+//             return currentCount = 0;
+//         },
+//         set: function (value: number) {
+//             return currentCount = value;
+//         },
+//     }
+//     return counter;
+// }
+//
+// let counterFunc = makeCounterPro(10);
+//
+// console.log(counterFunc.increase()); // 11
+// console.log(counterFunc.decrease()); // 9
+// console.log(counterFunc.reset()); // 0
+// console.log(counterFunc.set(100500)); // 100
+//
+// let counterFunc2 = makeCounterPro(667);
+// console.log(counterFunc2.decrease()); // 666
 
 // Task 04*
 // Реализовать функцию superSum которая принимает число в качестве аргумента, которое указывает на количество слагаемых
@@ -405,6 +472,38 @@ console.log('lesson 2');
 // 4) superSum(3)(2,5,3) //10
 // 5) superSum(3)(2,5)(3) //10
 // 6) superSum(3)(2,5)(3,9) //10
+//
+//Решение
+//
+// function superSum(n: number) {
+//     if (n <= 0) return 0;
+//     if (n <= 1) return (num: number) => num;
+//
+//     let _args: number[] = [];
+//
+//     function helper(...args: number[]) { //рекурсия
+//         _args = [..._args, ...args]; //старые плюс новые через рест оператор
+//         if (_args.length >= n) { //проверка а достаточно ли нам элементов для подсчета???
+//             _args.length = n; //обрезка массива
+//             return _args.reduce((acc, num) => acc + num); //  подсчет суммы
+//         } else {
+//             return helper;
+//         }
+//     }
+//
+//     return helper;
+// }
+//
+// let arr = [10, 20];
+// arr.length = 10; //добавятся empty элементы, методы перебирающие массив будет пропускать эмпти, а метод филл заполняет эмпти.
+// //в дырявые элементы мы сможем обратится через цикл фор, то есть по прямому индексу.
+//
+// //@ts-ignore
+// console.log(superSum(3)(2)(5)(3))
+// //@ts-ignore
+// console.log(superSum(5)(2, 5, 3, 4, 1))
+// //@ts-ignore
+// console.log(superSum(3)(2, 5)(3, 9))
 
 // P.S. типизируйте только аргументы, а при вызове функции используйте @ts-ignore
 
@@ -413,6 +512,12 @@ console.log('lesson 2');
 
 // Task 06
 // написать функцию, которая повторяет функционал метода flat массива на всю глубину.
+//
+//Решение
+//
+function MyFlat (){
+
+}
 
 // just a plug
 export default () => {
