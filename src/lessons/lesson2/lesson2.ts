@@ -362,40 +362,30 @@ console.log('lesson 2');
 // }
 // console.log(sumTo(3, 0)); //6
 
-//Задача с собеса на выравнивание массива, альтернатива методу flat
-// const arr = [1, 2, [3, 4, [5, 6]]];
-//
-// function flatDeep(arr: any, d = 1) {
-//     return d > 0 ? arr.reduce((acc: string, val: number) => acc.concat(Array.isArray(val) ? flatDeep(val, d - 1) : val), [])
-//         : arr.slice();
-// };
-//
-// console.log(flatDeep(arr, Infinity)); // [1, 2, 3, 4, 5, 6]
-
 
 // Task 01
 // Реализовать функцию sum которая суммирует 2 числа следующим образом sum(3)(6) === 9
 //
 //Решение
 //
-function simpleSum(x: number) {
-    if (x <= 0) return (num: number) => num ;
-
-    let _el: number[] = [x];
-
-    function helper2(...el: number[]) {
-        _el = [..._el, ...el];
-        return _el.reduce((acc, num) => acc + num);
-    }
-
-    return helper2;
-}
-
-//@ts-ignore
-console.log(simpleSum(3)(2))
-console.log(simpleSum(3)(6))
-console.log(simpleSum(1)(0))
-console.log(simpleSum(0)(134))
+// function simpleSum(x: number) {
+//     if (x <= 0) return (num: number) => num ;
+//
+//     let _el: number[] = [x];
+//
+//     function helper2(...el: number[]) {
+//         _el = [..._el, ...el];
+//         return _el.reduce((acc, num) => acc + num);
+//     }
+//
+//     return helper2;
+// }
+//
+// //@ts-ignore
+// console.log(simpleSum(3)(2))
+// console.log(simpleSum(3)(6))
+// console.log(simpleSum(1)(0))
+// console.log(simpleSum(0)(134))
 
 // Task 02
 // Реализовать функцию makeCounter которая работает следующим образом:
@@ -513,13 +503,38 @@ console.log(simpleSum(0)(134))
 // решить все задачи по рекурсии которые даны в конце статьи https://learn.javascript.ru/recursion
 
 // Task 06
-// написать функцию, которая повторяет функционал метода flat массива на всю глубину.
+// написать функцию, которая повторяет функционал метода flat массива на всю глубину!!!
 //
 //Решение
 //
-function MyFlat() {
+// const arr = [1, 2, [3, 4, [5, 6]]];
+//
+// function flatDeep(arr: any, d = 1) {
+//     return d > 0
+//         ? arr.reduce((acc: string, val: number) => acc.concat(Array.isArray(val) //мы проверяем является ли полученное массивом
+//             ? flatDeep(val, d - 1)
+//             : val), [])
+//         : arr.slice();
+// };
+//
+// console.log(flatDeep(arr, Infinity)); // [1, 2, 3, 4, 5, 6]
 
-}
+
+// //Task 07 Разворачивание массива массивов
+// //
+// //Решение
+// //
+// const arr2 = [[1, 2], [3, 4], [], [5, 6]].reduce((a, b) => a.concat(b));
+// console.log(arr2)
+//
+// //Task 08 Выравнивание двумерного массива с сортировкой
+// //
+// //Решение
+// //
+// const arr3 = [[1, 2], [3, 4], [], [5, 6]]
+//     .reduce((result, current) => [...result, ...current], []).sort((a, b) => a - b)
+// console.log(arr3)
+
 
 // just a plug
 export default () => {
