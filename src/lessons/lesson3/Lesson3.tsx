@@ -12,7 +12,6 @@ const Lesson3 = () => {
         API.searchFilmsByTitle(searchName)
             .then(data => {
                 if (searchName){
-                    debugger;
                     setSerachResult(data.Title)
                 } else {
                     setSerachResult("Please, enter the name")

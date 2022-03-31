@@ -1,3 +1,5 @@
+import axios from "axios";
+
 console.log('lesson 3');
 
 // Event loop
@@ -96,6 +98,48 @@ promReject
             console.log(err4)
         }
     )
+
+//Изучить API по ссылке https://jsonplaceholder.typicode.com/guide/
+//Реализовать методы get, post, put, delete через axios
+
+//get
+fetch('https://jsonplaceholder.typicode.com/posts/1')
+    .then((response) => response.json())
+    .then((json) => console.log(json));
+
+axios.get('https://jsonplaceholder.typicode.com/posts/1')
+    .then(response => response.data)
+    .then((data: any) => {
+        return console.log(data)
+    })
+
+//post
+fetch('https://jsonplaceholder.typicode.com/posts', {
+    method: 'POST',
+    body: JSON.stringify({
+        title: 'foo',
+        body: 'bar',
+        userId: 1,
+    }),
+    headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+    },
+})
+    .then((response) => response.json())
+    .then((json) => console.log(json));
+
+axios.post('https://jsonplaceholder.typicode.com/posts', {
+    method: 'POST',
+    body: {
+        title: 'foo',
+        body: 'bar',
+        userId: 1,
+    },
+    headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+    }})
+    .then((response) => response.data)
+    .then((data) => console.log(data));
 
 
 // just a plug
