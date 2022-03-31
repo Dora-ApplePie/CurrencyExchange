@@ -10,11 +10,26 @@ const Lesson3 = () => {
 
     const searchFilm = () => {
         API.searchFilmsByTitle(searchName)
+            .then(data => {
+                if (searchName){
+                    debugger;
+                    setSerachResult(data.Title)
+                } else {
+                    setSerachResult("Please, enter the name")
+                }
+            })
     };
 
     const searchByType = (e: React.MouseEvent<HTMLButtonElement>) => {
         const type: string = e.currentTarget.dataset.t ? e.currentTarget.dataset.t : '';
         API.searchFilmsByType(searchNameByType, type)
+            .then(data => {
+                if (searchNameByType && type){
+                    setSerachResultByType(data.Title)
+                } else {
+                    setSerachResultByType("Please, enter the name")
+                }
+            })
     }
 
     return (
