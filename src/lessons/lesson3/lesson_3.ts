@@ -466,6 +466,48 @@ promReject3
 // show();
 // //ОТВЕТ 123
 
+// //9.
+// let pr1 = new Promise((res) => {
+//     res(10);
+// });
+// let pr2 = new Promise((res) => {
+//     res(0);
+// });
+//
+// pr1
+//     .then((res: any) => {
+//         console.log(res);
+//         return res + 2;
+//     })
+//     .then((res: any) => {
+//         console.log(res);
+//         return res + 2;
+//     })
+//     .then(console.log);
+//
+// pr2
+//     .then((res: any) => {
+//         console.log(res);
+//         return res + 1;
+//     })
+//     .then((res: any) => {
+//         console.log(res);
+//         return res + 1;
+//     })
+//     .then(console.log);
+//
+// //10-0-12-14-1-2 так как then друг за другом не выполняются
+
+// //10.
+// setTimeout(() => console.log(1), 0);
+// console.log(2);
+// new Promise((resolve, reject) => {
+//     setTimeout(() => reject(console.log(3)), 1000);
+//     }).catch(() => console.log(4));
+// console.log(5);
+//
+// //2-5-1-3-4
+
 
 // just a plug
 export default () => {
