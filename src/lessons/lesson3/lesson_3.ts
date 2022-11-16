@@ -18,142 +18,142 @@ console.log('lesson 3');
 // https://habr.com/ru/company/oleg-bunin/blog/417461/?_ga=2.54695343.543933152.1602500664-1040035071.1596811661
 
 
-let prom = new Promise((resolve, reject) => {
-    setTimeout((res: any) => {
-        if (res.statusCode >= 200 && res.statusCode <= 400) {
-            resolve(res.data)
-            console.log(prom) //фулфилд
-        } else {
-
-        }
-    }, 1000, {data: {id: 1, name: ' Dora'}, message: '', statusCode: '200'}) //res равет args и это все выполнится через 1 сек
-})
-console.log(prom) //пендинг
-
-
-// //promise chaining
-prom
-    .then((res) => {
-        console.log(res)
-    }) //вернется объект {id: 1, name: 'Dora'} так как resolve(res.data) в setTimeout
-    .then((res2) => {
-        console.log(res2)
-    }) //вернется undefined так как нету return в предыдущем then
-
-
-//promise chaining 2
-prom
-    .then((res) => {
-        console.log(res) //вернется объект {id: 1, name: 'Dora'} так как resolve(res.data) в setTimeout
-        return new Promise((res, rej) => {
-            setTimeout((response: any) => {
-                if (response.statusCode >= 200 && response.statusCode <= 400) {
-                    res(response.data)
-                    console.log(prom) //фулфилд
-                } else {
-                }
-            }, 1000, {data: {email: 'test@test.com'}, message: '', statusCode: '200'})
-            prom
-                .then((res) => {
-                    console.log(res) //вернется объект {id: 1, name: 'Dora'} так как resolve(res.data) в setTimeout
-                    return new Promise((res, rej) => {
-                        setTimeout((response: any) => {
-                            if (response.statusCode >= 200 && response.statusCode <= 400) {
-                                res(response.data)
-                                console.log(prom) //фулфилд
-                            } else {
-                            }
-                        }, 1000, {data: {email: 'test@test.com'}, message: '', statusCode: '200'})
-                    })
-                })
-                .then((res2: any) => {
-                    console.log(res2.email) // вернется test@test.com
-                })
-
-//reject promise
-
-            let promReject2 = new Promise((resolve, reject) => {
-                setTimeout((res: any) => {
-                    if (res.statusCode >= 200 && res.statusCode <= 400) {
-
-                    } else {
-                        reject(res.message)
-                    }
-                }, 1000, {data: '', message: 'Unauthorized', statusCode: '401'})
-            })
-
-            promReject2
-                .then(
-                    res =>
-                        console.log(res),
-                    err => { //вызывается сразу же второй коллбек метода then, так как у нас reject(res.message)
-                        console.log(err) //Unauthorized
-                        //throw 'some error'
-                    })
-                .then(
-                    res2 => {
-                        console.log(res2) //undefined, так как нету явного return выше в err
-                    },
-                    err2 => { //попадем сразу сюда а не в res2
-                        console.log(err2) // перехват ошибок throw 'some error', ошибка идет вниз по цепочке до ближайшего обработчика ошибок
-                    }
-                )
-                .then( //типо catch
-                    null, //пропускаем обработчик res и ниже устанавливаем сразу для ошибок
-                    err3 => { //если бы не было err2, словили бы ошибку здесь
-                        console.log(err3)
-                    }
-                )
-                .catch(
-                    err4 => {
-                        console.log(err4)
-                    }
-                )
-        })
-    })
-    .then((res2: any) => {
-        console.log(res2.email) // вернется test@test.com
-    })
-
-//reject promise
-
-let promReject3 = new Promise((resolve, reject) => {
-    setTimeout((res: any) => {
-        if (res.statusCode >= 200 && res.statusCode <= 400) {
-
-        } else {
-            reject(res.message)
-        }
-    }, 1000, {data: '', message: 'Unauthorized', statusCode: '401'})
-})
-
-promReject3
-    .then(
-        res =>
-            console.log(res),
-        err => { //вызывается сразу же второй коллбек метода then, так как у нас reject(res.message)
-            console.log(err) //Unauthorized
-            //throw 'some error'
-        })
-    .then(
-        res2 => {
-            console.log(res2) //undefined, так как нету явного return выше в err
-        },
-        err2 => { //попадем сразу сюда а не в res2
-            console.log(err2) // перехват ошибок throw 'some error', ошибка идет вниз по цепочке до ближайшего обработчика ошибок
-        }
-    )
-    .then( //типо catch
-        null, //пропускаем обработчик res и ниже устанавливаем сразу для ошибок
-        err3 => { //если бы не было err2, словили бы ошибку здесь
-            console.log(err3)
-        }
-    )
-    .catch(
-        err4 => {
-            console.log(err4)
-        }
-    );
+// let prom = new Promise((resolve, reject) => {
+//     setTimeout((res: any) => {
+//         if (res.statusCode >= 200 && res.statusCode <= 400) {
+//             resolve(res.data)
+//             console.log(prom) //фулфилд
+//         } else {
+//
+//         }
+//     }, 1000, {data: {id: 1, name: ' Dora'}, message: '', statusCode: '200'}) //res равет args и это все выполнится через 1 сек
+// })
+// console.log(prom) //пендинг
+//
+//
+// // //promise chaining
+// prom
+//     .then((res) => {
+//         console.log(res)
+//     }) //вернется объект {id: 1, name: 'Dora'} так как resolve(res.data) в setTimeout
+//     .then((res2) => {
+//         console.log(res2)
+//     }) //вернется undefined так как нету return в предыдущем then
+//
+//
+// //promise chaining 2
+// prom
+//     .then((res) => {
+//         console.log(res) //вернется объект {id: 1, name: 'Dora'} так как resolve(res.data) в setTimeout
+//         return new Promise((res, rej) => {
+//             setTimeout((response: any) => {
+//                 if (response.statusCode >= 200 && response.statusCode <= 400) {
+//                     res(response.data)
+//                     console.log(prom) //фулфилд
+//                 } else {
+//                 }
+//             }, 1000, {data: {email: 'test@test.com'}, message: '', statusCode: '200'})
+//             prom
+//                 .then((res) => {
+//                     console.log(res) //вернется объект {id: 1, name: 'Dora'} так как resolve(res.data) в setTimeout
+//                     return new Promise((res, rej) => {
+//                         setTimeout((response: any) => {
+//                             if (response.statusCode >= 200 && response.statusCode <= 400) {
+//                                 res(response.data)
+//                                 console.log(prom) //фулфилд
+//                             } else {
+//                             }
+//                         }, 1000, {data: {email: 'test@test.com'}, message: '', statusCode: '200'})
+//                     })
+//                 })
+//                 .then((res2: any) => {
+//                     console.log(res2.email) // вернется test@test.com
+//                 })
+//
+// //reject promise
+//
+//             let promReject2 = new Promise((resolve, reject) => {
+//                 setTimeout((res: any) => {
+//                     if (res.statusCode >= 200 && res.statusCode <= 400) {
+//
+//                     } else {
+//                         reject(res.message)
+//                     }
+//                 }, 1000, {data: '', message: 'Unauthorized', statusCode: '401'})
+//             })
+//
+//             promReject2
+//                 .then(
+//                     res =>
+//                         console.log(res),
+//                     err => { //вызывается сразу же второй коллбек метода then, так как у нас reject(res.message)
+//                         console.log(err) //Unauthorized
+//                         //throw 'some error'
+//                     })
+//                 .then(
+//                     res2 => {
+//                         console.log(res2) //undefined, так как нету явного return выше в err
+//                     },
+//                     err2 => { //попадем сразу сюда а не в res2
+//                         console.log(err2) // перехват ошибок throw 'some error', ошибка идет вниз по цепочке до ближайшего обработчика ошибок
+//                     }
+//                 )
+//                 .then( //типо catch
+//                     null, //пропускаем обработчик res и ниже устанавливаем сразу для ошибок
+//                     err3 => { //если бы не было err2, словили бы ошибку здесь
+//                         console.log(err3)
+//                     }
+//                 )
+//                 .catch(
+//                     err4 => {
+//                         console.log(err4)
+//                     }
+//                 )
+//         })
+//     })
+//     .then((res2: any) => {
+//         console.log(res2.email) // вернется test@test.com
+//     })
+//
+// //reject promise
+//
+// let promReject3 = new Promise((resolve, reject) => {
+//     setTimeout((res: any) => {
+//         if (res.statusCode >= 200 && res.statusCode <= 400) {
+//
+//         } else {
+//             reject(res.message)
+//         }
+//     }, 1000, {data: '', message: 'Unauthorized', statusCode: '401'})
+// })
+//
+// promReject3
+//     .then(
+//         res =>
+//             console.log(res),
+//         err => { //вызывается сразу же второй коллбек метода then, так как у нас reject(res.message)
+//             console.log(err) //Unauthorized
+//             //throw 'some error'
+//         })
+//     .then(
+//         res2 => {
+//             console.log(res2) //undefined, так как нету явного return выше в err
+//         },
+//         err2 => { //попадем сразу сюда а не в res2
+//             console.log(err2) // перехват ошибок throw 'some error', ошибка идет вниз по цепочке до ближайшего обработчика ошибок
+//         }
+//     )
+//     .then( //типо catch
+//         null, //пропускаем обработчик res и ниже устанавливаем сразу для ошибок
+//         err3 => { //если бы не было err2, словили бы ошибку здесь
+//             console.log(err3)
+//         }
+//     )
+//     .catch(
+//         err4 => {
+//             console.log(err4)
+//         }
+//     );
 
 //Изучить API по ссылке https://jsonplaceholder.typicode.com/guide/
 //Реализовать методы get, post, put, delete через axios

@@ -367,7 +367,7 @@ console.log('lesson 2');
 // Реализовать функцию sum которая суммирует 2 числа следующим образом sum(3)(6) === 9
 //
 //Решение
-//
+//hard
 // function simpleSum(x: number) {
 //     if (x <= 0) return (num: number) => num ;
 //
@@ -380,9 +380,16 @@ console.log('lesson 2');
 //
 //     return helper2;
 // }
+// //easy
+// function sum(n: number) {
+//     return (b: number) => {
+//         return n + b
+//     }
+// }
 //
-// //@ts-ignore
+//@ts-ignore
 // console.log(simpleSum(3)(2))
+// console.log(sum(3)(2))
 // console.log(simpleSum(3)(6))
 // console.log(simpleSum(1)(0))
 // console.log(simpleSum(0)(134))
@@ -613,4 +620,4 @@ console.log('lesson 2');
 
 // just a plug
 export default () => {
-};
+}
