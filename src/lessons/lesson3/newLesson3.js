@@ -44,7 +44,6 @@ alex.getFile() //typeof - object
     });
 
 
-
 alex.getFile()
     .catch((err) => {
         console.log("Error: ", err);
@@ -108,3 +107,50 @@ pr.then((res) => {
 })
 //ЭТО НЕ ЦЕПОЧКА ПРОМИСОВ - МЫ ПРОСТО ПОДПИСАЛИСЬ НА ОДИН И ТОТ ЖЕ ПРОМИС
 
+
+//async
+
+const foo = async () => {
+    return 55
+}
+
+//тоже самое что и
+
+const foo2 = () => {
+    return new Promise((res) => {
+        res(55);
+    })
+}
+
+
+foo().then(res => {
+    console.log(res);
+})
+
+foo2().then(res => {
+    console.log(res);
+})
+
+
+//example 2
+
+const foo3 = async () => {
+    try {
+        const users = await fetch("https://vk.com/users")
+    } catch (e) {
+        console.log('error', e)
+    }
+
+}
+
+//тоже самое что и
+
+const foo4 = () => {
+    return fetch("https://vk.com/users")
+        .then(users => {
+            console.log(users)
+        })
+        .catch(e => {
+            console.log(e)
+        })
+}
