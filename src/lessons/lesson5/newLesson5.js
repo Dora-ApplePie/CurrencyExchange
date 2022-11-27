@@ -46,17 +46,17 @@
 //
 // //Example 1
 //
-// this.age = 23
-//
-// const user = {
-//     name: 'Daria',
-//     age: 100,
-//     showAge: () => {
-//         console.log(this.age); //23, так как arrow и объект не создает скоуп
-//     }
-// }
-//
-// user.showAge()
+this.age = 23
+
+const user = {
+    name: 'Daria',
+    age: 100,
+    showAge: () => {
+        console.log(this.age); //23, так как arrow и объект не создает скоуп
+    }
+}
+
+user.showAge()
 //
 // // ----global scope create in global script, functions, code blocks (loops)---
 //
@@ -80,7 +80,12 @@
 // // }
 // //
 // // user2.show()
+// // //Example 2
+// const arrow = () => {
+//     console.log(this) //будет window, так как у стрелочной функции нету this
+// }
 //
+// arrow.call({name: "Arrow"})
 //
 // // ================================ FUNCTIONS =================================
 //
@@ -113,6 +118,15 @@
 // //Итого: если функция вызываеться через new, this внутри этой функции будет будет новый экземпляр объекта
 //
 // // ============= Вызываем через методы функций call, bind, apply =================
+// // Контекст нельзя перепривязать
+// Example
+// function fooBind() {
+//     console.log(this)
+// }
+//
+// fooBind
+//     .bind({name: "Alex"})() //превяжеться только первый контекст
+//     .bind({name: "Hanna"})()
 //
 // //Example 1
 // const nick = {
@@ -207,12 +221,176 @@
 // fooFunc();
 
 
-// ================= use-strict ======================
+// // ================= use-strict ======================
+//
+// 'use strict';
+//
+// function fooNoStrict() {
+//     console.log(this) //5
+// }
+//
+// fooNoStrict.call(5); //что передадим то и будет
+//
+//
+// // ================= без use-strict ======================
+//
+// function fooStrict() {
+//     console.log(this) //Number{5}
+// }
+//
+// fooStrict.call(5); //примитивы будут как - объектное представление
+//
+//
 
-'use strict';
+// ================= ЗАДАЧКИ ======================
 
-function fooStrict() {
-  console.log(this.name)
-}
+// // Task 1
+// const a = {
+//     name: "a",
+//     logName(){
+//         console.log(this.name);
+//     }
+// }
+// setTimeout(a.logName, 100)
+//
+// //Ответ: undefined, так как мы не видим место вызова, а передаем как колбек
+// //Исправление: setTimeout(a.logName.bind(a), 100)
+//
+// // Task 2
+// const a2 = {
+//     isMale: true,
+//     age: 23,
+//
+//     getIsMale: () => {
+//         return this.isMale
+//     },
+//
+//     getAge: function () {
+//         const age = 24
+//         console.log(this.age);
+//     }
+// }
+//
+// console.log(
+//     a2.getIsMale() //undefined, так как у стрелочной и у объекта нет this контекста
+// )
+//
+// a2.getAge() //23, так как контекст вызова объект a2
 
-fooStrict()
+// // Task 3
+// const a3 = {
+//     name: "a"
+// }
+//
+// const b = {
+//     name: "b",
+//     getName: () => {
+//         (() => {
+//             console.log(this.name);
+//         }).call(a3)
+//     }
+// }
+//
+// b.getName()
+//
+// //Ответ: undefined, так как call не работает для стрелочных, мы выпрыгнем наверх в глобал и там берем name у виндоу
+
+// // Task 4
+// const a4 = {
+//     name: "a4"
+// }
+//
+// const b4 = {
+//     name: "b4",
+//     getName() {
+//         (() => {
+//             console.log(this.name);
+//         }).call(a4)
+//     }
+// }
+//
+// b4.getName()
+//
+// //Ответ: b4, так как this у стрелочной нет, а в методе есть и оно выпрыгнет выше
+// // P.S если вместо стралочной сделать function declaration, то сработает привязка контекста, а вызов через метод объекта проигнорируеться
+
+// //Task 5
+// const a5 = {
+//     age: 25
+// }
+//
+// const b5 = {
+//     age: 23,
+//
+//     hi: () => {
+//         console.log(this.age);
+//     },
+//
+//     hi2() {
+//         (() => {
+//             console.log(this.age);
+//         }).call(a5)
+//     }
+// }
+//
+// b5.hi() //undefined
+// b5.hi2.call(a5) //25
+
+// //Task6
+//
+// const group = {
+//     name: 'KMB-40',
+//     users: ["Pasha", "Masha"],
+//
+//     showUsers() {
+//         this.users.forEach(function (user) {
+//             console.log(`${this.name}: ${user}`)  //коллбек
+//         })
+//     }
+// }
+//
+// group.showUsers() //{undefined: "Pasha"}, {undefined: "Masha"} - так как this.name передали коллбеком а не вызывали
+//
+// //Правильный варик - правильная работа
+// const group2 = {
+//     name: 'KMB-40',
+//     users: ["Pasha", "Masha"],
+//
+//     showUsers() {
+//         this.users.forEach((user) => {
+//             console.log(`${this.name}: ${user}`)
+//         })
+//     }
+// }
+//
+// group2.showUsers() //сработает верно так как у стрелочной нету this и мы выпрыгнем выше и обратимся к предыдущему вызову контекста где группы
+
+// //Правильный варик 2 - правильная работа
+//
+// const group3 = {
+//     name: 'KMB-40',
+//     users: ["Pasha", "Masha"],
+//
+//     showUsers() {
+//         this.users.forEach((function (user) {
+//             console.log(`${this.name}: ${user}`)
+//         }).bind(this))
+//     }
+// }
+//
+// group3.showUsers()
+
+// //Правильный варик 3 - правильная работа
+//
+// const group3 = {
+//     name: 'KMB-40',
+//     users: ["Pasha", "Masha"],
+//
+//     showUsers() {
+//         this.users.forEach(function (user) {
+//             console.log(`${this.name}: ${user}`)
+//         }, this) //thisArgs аргумент в forEach
+//     }
+// }
+//
+// group3.showUsers()
