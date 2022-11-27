@@ -1,5 +1,4 @@
 import axios from "axios";
-
 console.log('lesson 3');
 
 // Event loop
