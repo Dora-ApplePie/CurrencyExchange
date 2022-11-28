@@ -46,17 +46,17 @@
 //
 // //Example 1
 //
-this.age = 23
-
-const user = {
-    name: 'Daria',
-    age: 100,
-    showAge: () => {
-        console.log(this.age); //23, так как arrow и объект не создает скоуп
-    }
-}
-
-user.showAge()
+// this.age = 23
+//
+// const user = {
+//     name: 'Daria',
+//     age: 100,
+//     showAge: () => {
+//         console.log(this.age); //23, так как arrow и объект не создает скоуп
+//     }
+// }
+//
+// user.showAge()
 //
 // // ----global scope create in global script, functions, code blocks (loops)---
 //
@@ -112,21 +112,22 @@ user.showAge()
 // }
 //
 // console.log(
-//     new (User2.bind({ name: "Custom name" }))("Alex") //будет только алекс, так как байнд игнориться
+//     new (User2.bind({name: "Custom name"}))("Alex") //будет только алекс, так как байнд игнориться
 // )
 //
 // //Итого: если функция вызываеться через new, this внутри этой функции будет будет новый экземпляр объекта
 //
 // // ============= Вызываем через методы функций call, bind, apply =================
 // // Контекст нельзя перепривязать
-// Example
-// function fooBind() {
-//     console.log(this)
-// }
 //
-// fooBind
-//     .bind({name: "Alex"})() //превяжеться только первый контекст
-//     .bind({name: "Hanna"})()
+// // //Example
+// // function fooBind() {
+// //     console.log(this)
+// // }
+// //
+// // fooBind
+// //     .bind({name: "Alex"})() //превяжеться только первый контекст
+// //     .bind({name: "Hanna"})()
 //
 // //Example 1
 // const nick = {
@@ -219,11 +220,11 @@ user.showAge()
 // }
 //
 // fooFunc();
-
-
+//
+//
 // // ================= use-strict ======================
 //
-// 'use strict';
+// //'use strict';
 //
 // function fooNoStrict() {
 //     console.log(this) //5
@@ -241,13 +242,12 @@ user.showAge()
 // fooStrict.call(5); //примитивы будут как - объектное представление
 //
 //
-
-// ================= ЗАДАЧКИ ======================
-
+// // ================= ЗАДАЧКИ ======================
+//
 // // Task 1
 // const a = {
 //     name: "a",
-//     logName(){
+//     logName() {
 //         console.log(this.name);
 //     }
 // }
@@ -276,7 +276,7 @@ user.showAge()
 // )
 //
 // a2.getAge() //23, так как контекст вызова объект a2
-
+//
 // // Task 3
 // const a3 = {
 //     name: "a"
@@ -294,7 +294,7 @@ user.showAge()
 // b.getName()
 //
 // //Ответ: undefined, так как call не работает для стрелочных, мы выпрыгнем наверх в глобал и там берем name у виндоу
-
+//
 // // Task 4
 // const a4 = {
 //     name: "a4"
@@ -313,7 +313,7 @@ user.showAge()
 //
 // //Ответ: b4, так как this у стрелочной нет, а в методе есть и оно выпрыгнет выше
 // // P.S если вместо стралочной сделать function declaration, то сработает привязка контекста, а вызов через метод объекта проигнорируеться
-
+//
 // //Task 5
 // const a5 = {
 //     age: 25
@@ -335,7 +335,7 @@ user.showAge()
 //
 // b5.hi() //undefined
 // b5.hi2.call(a5) //25
-
+//
 // //Task6
 //
 // const group = {
@@ -364,7 +364,7 @@ user.showAge()
 // }
 //
 // group2.showUsers() //сработает верно так как у стрелочной нету this и мы выпрыгнем выше и обратимся к предыдущему вызову контекста где группы
-
+//
 // //Правильный варик 2 - правильная работа
 //
 // const group3 = {
@@ -379,10 +379,10 @@ user.showAge()
 // }
 //
 // group3.showUsers()
-
+//
 // //Правильный варик 3 - правильная работа
 //
-// const group3 = {
+// const group4 = {
 //     name: 'KMB-40',
 //     users: ["Pasha", "Masha"],
 //
@@ -393,4 +393,4 @@ user.showAge()
 //     }
 // }
 //
-// group3.showUsers()
+// group4.showUsers()
