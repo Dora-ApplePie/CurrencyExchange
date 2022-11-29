@@ -4,7 +4,8 @@ import './App.css';
 // import './lessons/lesson3/newLesson3';
 // import './lessons/lesson4/newLesson4';
 // import './lessons/lesson5/newLesson5';
-import './lessons/lesson6/newLesson6';
+// import './lessons/lesson6/newLesson6';
+import './lessons/lesson7/newLesson7';
 
 function App() {
     return (

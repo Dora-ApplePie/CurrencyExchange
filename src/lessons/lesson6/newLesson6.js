@@ -1,4 +1,4 @@
-console.log("lesson 13");
+// console.log("lesson 13");
 
 // Тема - Prototype
 
